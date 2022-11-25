@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <link href="asets/css/bootstrap.css" rel="stylesheet">
+    <link href="asets/css/bootstrap.css.map" rel="stylesheet">
+    <script src="asets/js/bootstrap.bundle.js"></script>
+    <script src="asets/js/bootstrap.bundle.js.map"></script>
+<body>
+
+Manga Title : 
+<div class="container">
+<div id="row" class="row gx-5"></div>
+<input type="number" id="inpnmb" onchange="limit()">
+</div>
+<script>
+
+function limit(){
+    let r=document.getElementById("inpnmb").value;
+    
+    if (r>0){
+        console.log(r);
+    return 9;
+}
+    else {
+        console.log("3");
+        return 4;
+    }
+}
+i= limit()
+getData("https://api.mangadex.org/manga?offset=1&limit=9&includes[]=cover_art");
+async function getData(file) {
+let mangaData
+  await fetch(file).then((response) => {
+		
+       return response.json();
+    }).then((data) => {
+      mangaData = data.data;
+    })
+for (let n=0; n<10; n++){
+  console.log(mangaData)
+    let p = document.getElementById("row");
+    let q = document.createElement("div");
+    q.setAttribute("id", "democlass" + n);
+    q.setAttribute("class", "democlass");
+    let r = document.createElement("div");
+    r.setAttribute("id", "img" + n);
+    let s=document.createElement("div")
+    s.setAttribute("class","kolom")
+    s.appendChild(q)
+    s.setAttribute("class", "col-md-3");
+    q.appendChild(r)
+    p.appendChild(s);
+    let
+     a=document.createElement("div");
+    a.setAttribute("class","tlt");
+    a.innerHTML= mangaData[n].attributes.title.en
+    q.appendChild(a);
+    let y=document.createTextNode(mangaData[n].attributes.description.en)
+    let b= document.createElement("div");
+    b.setAttribute("class","title")
+    b.appendChild(y)
+    q.appendChild(b)
+ 
+  for (let m=0; m<mangaData[n].relationships.length; m++){
+        if (mangaData[n].relationships[m].type=="cover_art"){
+            let imgData=
+            " https://uploads.mangadex.org/covers/" + mangaData[n].id + "/" +mangaData[n].relationships[m].attributes.fileName;
+
+            document.getElementById("img"+n).innerHTML =  "<img width='200' height='220' src="+ imgData + ">"
+        }
+}
+
+}
+}
+</script>
+
+</body>
+</html>
