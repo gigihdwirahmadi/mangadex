@@ -109,24 +109,21 @@
         document.getElementById("row").innerHTML="";
         let sts= Number(window.localStorage.getItem("status"))
         let txt= document.getElementById("txtsrc").value;
-        if(status="src"){
-          getData("b",p,y,txt);
-        }
-        else{
-        getData("a",p,y,"");}
-
+          getData("b",1,y,txt);
+          window.localStorage.setItem("n",1);
+       
       }
       async function getData(a,p,y,txt) { 
         let mangaData
         if (a=="a"){
-          await fetch("https://api.mangadex.org/manga?offset="+p+"&limit=6&includes[]=cover_art").then((response) => {
+          await fetch("https://api.mangadex.org/manga?offset="+p+"&limit="+y+"&includes[]=cover_art").then((response) => {
           return response.json();
         }).then((data) => {
           mangaData = data.data;
         })}
         else if (a=="b"){
-          await fetch("https://api.mangadex.org/manga?offset="+p+"&limit=6&includes[]=cover_art&title="+txt).then((response) => {
-          return response.json();
+          await fetch("https://api.mangadex.org/manga?offset="+p+"&limit="+y+"&includes[]=cover_art&title="+txt).then((response) => {
+            return response.json();
           if (false){
             console.log("noooo");
           }
