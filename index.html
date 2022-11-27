@@ -10,14 +10,26 @@
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   <style>
      @media (max-width: 600px) {
-      img{
-        height: 80%;
-      width: 200px;
+      *{
+       font-size: 10px;
       }
+      .col-lg-3 {
+        height: 450px;
+      }
+      .tlt{
+        height:30px;
+      }
+      img{
+      height: 100%;
+      width: 60%;
+     }
+     }
+     .bottom{
+      border-top: 1px solid ;
      }
      img{
       height: 100%;
-      width: 200px;
+      width: 90%;
      }
     body {
       margin: 0;
@@ -73,6 +85,7 @@
       border: 1px solid black;
       padding: 5%;
       border-radius: 10px;
+      box-shadow: 5px 5px 3px 5px rgb(116, 115, 115);
     }
 
     img {
@@ -82,6 +95,9 @@
       margin-right: 20px;
       margin-left: 20px;
     }
+
+            
+    
   </style>
 </head>
 
@@ -93,17 +109,17 @@
         <a class="navbar-brand">MangaBoot</a>
         <div class="d-flex" role="search">
           <input class="form-control me-2" id="txtsrc" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success"  onclick="src()" >Search</button>
+          <button class="btn btn-outline-warning"  onclick="src()" >Search</button>
         </div>
       </div>
     </nav>
     <div class="container">
       
-      <div id="row" class="row gx-lg-5 gx-sm-2 gy-lg-3 py-3 gy-sm-2 d-flex justify-content-center">
+       <div id="row" class="row gx-lg-5 gx-sm-2 gy-lg-3 py-3 gy-sm-2 d-flex justify-content-center" style="margin-bottom:60px">
 
 
       </div>
-      <div class="bottom fixed-bottom d-flex justify-content-center" style="padding: 30px;">
+      <div class="bottom fixed-bottom d-flex justify-content-center" style="padding: 20px 30px 10px 30px; background-color: white;">
         <input type="button" id="inpnmb" class="btn btnbtm btn-dark" onclick="prev()" value="prev">
         <input type="number" id="number" onchange="number()">
         <input type="button" id="inpnmb" class="btn btnbtm btn-dark" onclick="next()" value="next">
@@ -129,6 +145,14 @@
         console.log("next = " + p)
         window.localStorage.setItem("n", p)
       }
+      // function home(){
+      //   let y = Number(document.getElementById("number").value)
+      //   let p = Number(window.localStorage.getItem("n"));
+      //   document.getElementById("row").innerHTML = "";
+      //   window.localStorage.setItem("n", 1);
+      //   window.localStorage.setItem("status", "nosrc");
+      //   getData("a",p,y,"");
+      // }
       function next() {
         let y = Number(document.getElementById("number").value)
         let p = Number(window.localStorage.getItem("n")) + y
@@ -205,7 +229,7 @@
           let s = document.createElement("div")
           s.setAttribute("class", "kolom")
           s.appendChild(q)
-          s.setAttribute("class", "col-md-3 col-lg-3 col-xl-3 col-sm-4");
+          s.setAttribute("class", "col-md-4 col-lg-3 col-xl-3 col-sm-4 col-4");
           q.appendChild(r)
           p.appendChild(s);
           
