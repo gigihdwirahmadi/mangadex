@@ -95,7 +95,10 @@
       margin-right: 20px;
       margin-left: 20px;
     }
-
+    .imgerror{
+      height: 50%;
+      width:50%;
+    }
             
     
   </style>
@@ -206,20 +209,22 @@
         else if (a == "b") {
           await fetch("https://api.mangadex.org/manga?offset=" + p + "&limit=" + y + "&includes[]=cover_art&title=" + txt).then((response) => {
             return response.json();
-            if (false) {
-              console.log("noooo");
-            }
+          
+              
+            
           }).then((data) => {
             mangaData = data.data;
           })
+          if(mangaData.length== 0) {
+            document.getElementById("row").innerHTML="<img src='error.jpg' class='imgerror'><div class='d-flex position-absolute justify-content-center w-100' style='font-weight:bold; font-size:30px'>Page Not Found!!</div>"
+          }
         }
 
         for (let n = 0; n < y; n++) {
           let a = document.createElement("div");
           a.setAttribute("class", "tlt bg-dark");
-          a.innerHTML = mangaData[n].attributes.title.en;
-          console.log(mangaData)
           let p = document.getElementById("row");
+          a.innerHTML = mangaData[n].attributes.title.en;
           let q = document.createElement("div");
           q.setAttribute("id", "democlass" + n);
           q.setAttribute("class", "democlass");
@@ -234,7 +239,6 @@
           p.appendChild(s);
           
           q.appendChild(a);
-
           let b = document.createElement("div");
           b.setAttribute("class", "txt txt-wrap");
           b.innerHTML = mangaData[n].attributes.description.en;
